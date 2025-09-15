@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Día del Amor y la Amistad 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Corazones flotantes de fondo */
+        .heart {
+            position: absolute;
+            color: rgba(255, 192, 203, 0.3);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .title {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s ease-in-out infinite;
+            z-index: 10;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .garden {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 15;
+        }
+
+        .sunflower-plant {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: grow 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .sunflower-plant:nth-child(1) { animation-delay: 0.5s; }
+        .sunflower-plant:nth-child(2) { animation-delay: 0.8s; }
+        .sunflower-plant:nth-child(3) { animation-delay: 1.1s; }
+        .sunflower-plant:nth-child(4) { animation-delay: 1.4s; }
+        .sunflower-plant:nth-child(5) { animation-delay: 1.7s; }
+
+        @keyframes grow {
+            from {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .sunflower-plant:hover {
+            transform: scale(1.1);
+        }
+
+        .sunflower {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .sunflower-petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 40px;
+            background: linear-gradient(to top, #ffd700, #ffed4a);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            top: 50%;
+            left: 50%;
+            transform-origin: center bottom;
+            margin-left: -10px; /* Centrar horizontalmente */
+            margin-top: -40px; /* Posicionar correctamente */
+        }
+
+        /* Distribución circular de pétalos mejorada */
+        .petal:nth-child(1)  { transform: rotate(0deg) translateY(-25px); }
+        .petal:nth-child(2)  { transform: rotate(30deg) translateY(-25px); }
+        .petal:nth-child(3)  { transform: rotate(60deg) translateY(-25px); }
+        .petal:nth-child(4)  { transform: rotate(90deg) translateY(-25px); }
+        .petal:nth-child(5)  { transform: rotate(120deg) translateY(-25px); }
+        .petal:nth-child(6)  { transform: rotate(150deg) translateY(-25px); }
+        .petal:nth-child(7)  { transform: rotate(180deg) translateY(-25px); }
+        .petal:nth-child(8)  { transform: rotate(210deg) translateY(-25px); }
+        .petal:nth-child(9)  { transform: rotate(240deg) translateY(-25px); }
+        .petal:nth-child(10) { transform: rotate(270deg) translateY(-25px); }
+        .petal:nth-child(11) { transform: rotate(300deg) translateY(-25px); }
+        .petal:nth-child(12) { transform: rotate(330deg) translateY(-25px); }
+
+        .sunflower-center {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #8b4513, #5d2e0a);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid #654321;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        /* Crear patrón de semillas en el centro */
+        .sunflower-center::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, 
+                transparent 2px, 
+                rgba(101, 67, 33, 0.5) 2px, 
+                rgba(101, 67, 33, 0.5) 4px, 
+                transparent 4px),
+                radial-gradient(circle at 50% 50%, 
+                rgba(101, 67, 33, 0.3) 1px, 
+                transparent 1px);
+            background-size: 8px 8px, 4px 4px;
+            border-radius: 50%;
+        }
+
+        .stem {
+            width: 8px;
+            height: 150px;
+            background: linear-gradient(to bottom, #90EE90, #228B22);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hojas del tallo */
+        .leaf {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: linear-gradient(45deg, #90EE90, #32CD32);
+            border-radius: 0 100% 0 100%;
+            transform-origin: left center;
+        }
+
+        .leaf:nth-child(1) {
+            top: 30%;
+            left: -20px;
+            transform: rotate(-30deg);
+        }
+
+        .leaf:nth-child(2) {
+            top: 60%;
+            right: -20px;
+            transform: rotate(30deg) scaleX(-1);
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            display: inline-block;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .click-heart {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            animation: heartFloat 2s ease-out forwards;
+            z-index: 30;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 1;
+            }
+            20% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            
+            .garden {
+                gap: 30px;
+            }
+            
+            .sunflower {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .stem {
+                height: 100px;
+            }
+            
+            .petal {
+                width: 15px;
+                height: 25px;
+                margin-left: -7.5px;
+                margin-top: -12px;
+            }
+            
+            .petal:nth-child(n) {
+                transform: rotate(calc((var(--i) - 1) * 30deg)) translateY(-28px);
+            }
+            
+            .sunflower-center {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .reveal {
+            display: flex;
+            animation: revealSunflower 1s ease-out forwards;
+        }
+
+        @keyframes revealSunflower {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body onclick="createClickHeart(event)">
+    <!-- Corazones flotantes -->
+    <div class="heart" style="top: 10%; left: 10%; animation-delay: 0s;">💝</div>
+    <div class="heart" style="top: 20%; right: 10%; animation-delay: 1s;">💖</div>
+    <div class="heart" style="bottom: 30%; left: 15%; animation-delay: 2s;">💕</div>
+    <div class="heart" style="bottom: 20%; right: 20%; animation-delay: 3s;">💗</div>
+    <div class="heart" style="top: 50%; left: 5%; animation-delay: 4s;">💓</div>
+    <div class="heart" style="top: 60%; right: 8%; animation-delay: 5s;">💘</div>
+
+    <h1 class="title">💖 ¡¡¡Feliz día del Amor y la Amistad!!! 🌻</h1>
+
+    <div class="garden">
+        <!-- Girasol inicial -->
+        <div class="sunflower-plant" onclick="revealMoreSunflowers(this, event)">
+            <div class="sunflower">
+                <div class="sunflower-petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="sunflower-center"></div>
+            </div>
+            <div class="stem">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+        </div>
+        
+        <!-- Girasoles ocultos -->
+        <div class="sunflower-plant hidden">
+            <div class="sunflower">
+                <div class="sunflower-petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="sunflower-center"></div>
+            </div>
+            <div class="stem">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+        </div>
+        <div class="sunflower-plant hidden">
+            <div class="sunflower">
+                <div class="sunflower-petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="sunflower-center"></div>
+            </div>
+            <div class="stem">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+        </div>
+        <div class="sunflower-plant hidden">
+            <div class="sunflower">
+                <div class="sunflower-petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="sunflower-center"></div>
+            </div>
+            <div class="stem">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+        </div>
+        <div class="sunflower-plant hidden">
+            <div class="sunflower">
+                <div class="sunflower-petals">
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                    <div class="petal"></div>
+                </div>
+                <div class="sunflower-center"></div>
+            </div>
+            <div class="stem">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para animar los girasoles al hacer clic
+        function animateSunflower(plant, event) {
+            event.stopPropagation(); // Evitar que se active el click del body
+            
+            const sunflower = plant.querySelector('.sunflower');
+            sunflower.style.transform = 'scale(1.3) rotate(360deg)';
+            sunflower.style.transition = 'transform 0.8s ease-in-out';
+            
+            setTimeout(() => {
+                sunflower.style.transform = 'scale(1) rotate(0deg)';
+            }, 800);
+            
+            // Crear pétalos que caen
+            createFallingPetals(plant);
+            
+            // Hacer que el tallo se balancee
+            const stem = plant.querySelector('.stem');
+            stem.style.transform = 'rotate(5deg)';
+            stem.style.transition = 'transform 0.4s ease-in-out';
+            
+            setTimeout(() => {
+                stem.style.transform = 'rotate(-3deg)';
+            }, 200);
+            
+            setTimeout(() => {
+                stem.style.transform = 'rotate(0deg)';
+            }, 400);
+        }
+
+        // Crear corazones al hacer clic en cualquier lugar
+        function createClickHeart(event) {
+            const hearts = ['💖', '💕', '💗', '💓', '💘', '💝', '💟'];
+            
+            for (let i = 0; i < 3; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'click-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = (event.clientX + (Math.random() - 0.5) * 50) + 'px';
+                heart.style.top = (event.clientY + (Math.random() - 0.5) * 50) + 'px';
+                heart.style.color = `hsl(${Math.random() * 60 + 300}, 70%, 60%)`;
+                
+                document.body.appendChild(heart);
+                
+                // Remover después de la animación
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.parentNode.removeChild(heart);
+                    }
+                }, 2000);
+            }
+        }
+
+        // Crear pétalos que caen cuando se hace clic en un girasol
+        function createFallingPetals(plant) {
+            const rect = plant.getBoundingClientRect();
+            const sunflowerRect = plant.querySelector('.sunflower').getBoundingClientRect();
+            
+            for (let i = 0; i < 12; i++) {
+                const petal = document.createElement('div');
+                petal.style.position = 'fixed';
+                petal.style.width = '12px';
+                petal.style.height = '18px';
+                petal.style.background = 'linear-gradient(to top, #ffd700, #ffed4a)';
+                petal.style.borderRadius = '50% 50% 50% 50% / 60% 60% 40% 40%';
+                petal.style.left = (sunflowerRect.left + sunflowerRect.width/2) + 'px';
+                petal.style.top = (sunflowerRect.top + sunflowerRect.height/2) + 'px';
+                petal.style.pointerEvents = 'none';
+                petal.style.zIndex = '25';
+                
+                const angle = (i * 30) * (Math.PI / 180);
+                const velocity = 80 + Math.random() * 40;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                document.body.appendChild(petal);
+                
+                // Animación de los pétalos
+                let x = 0;
+                let y = 0;
+                let gravity = 0.4;
+                let vyLocal = vy;
+                
+                const animate = () => {
+                    x += vx * 0.015;
+                    y += vyLocal * 0.015;
+                    vyLocal += gravity;
+                    
+                    petal.style.transform = `translate(${x}px, ${y}px) rotate(${x * 2}deg)`;
+                    petal.style.opacity = Math.max(0, 1 - y / 150);
+                    
+                    if (y < 200 && petal.style.opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        if (petal.parentNode) {
+                            petal.parentNode.removeChild(petal);
+                        }
+                    }
+                };
+                
+                animate();
+            }
+        }
+
+        // Agregar interactividad con el mouse para los corazones de fondo
+        document.addEventListener('mousemove', (e) => {
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach(heart => {
+                const rect = heart.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const deltaX = e.clientX - centerX;
+                const deltaY = e.clientY - centerY;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                
+                if (distance < 100) {
+                    const force = (100 - distance) / 100;
+                    heart.style.transform = `translate(${-deltaX * force * 0.2}px, ${-deltaY * force * 0.2}px) scale(${1 + force * 0.2})`;
+                } else {
+                    heart.style.transform = 'translate(0, 0) scale(1)';
+                }
+            });
+        });
+
+        function revealMoreSunflowers(plant, event) {
+            event.stopPropagation();
+        
+            // Primero animar el girasol actual
+            animateSunflower(plant, event);
+        
+            // Obtener todos los girasoles ocultos
+            const hiddenSunflowers = document.querySelectorAll('.sunflower-plant.hidden');
+        
+            // Revelar cada girasol con un retraso
+            hiddenSunflowers.forEach((sunflower, index) => {
+                setTimeout(() => {
+                    sunflower.classList.remove('hidden');
+                    sunflower.classList.add('reveal');
+                    // Cambiar el onclick al nuevo comportamiento
+                    sunflower.setAttribute('onclick', 'animateSunflower(this, event)');
+                }, 300 * (index + 1));
+            });
+        
+            // Remover el onclick del primer girasol para que no vuelva a activar la revelación
+            plant.setAttribute('onclick', 'animateSunflower(this, event)');
+        }
+    </script>
+</body>
+</html>
