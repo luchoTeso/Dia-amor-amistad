@@ -22,6 +22,7 @@
             overflow-x: hidden;
             position: relative;
             cursor: pointer;
+            padding: 20px;
         }
 
         /* Corazones flotantes de fondo */
@@ -40,12 +41,15 @@
 
         .title {
             color: #e91e63;
-            font-size: 2.5em;
-            margin-bottom: 50px;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             animation: pulse 2s ease-in-out infinite;
             z-index: 10;
             position: relative;
+            text-align: center;
+            max-width: 100%;
+            word-wrap: break-word;
         }
 
         @keyframes pulse {
@@ -54,12 +58,15 @@
         }
 
         .garden {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 30px;
             justify-content: center;
-            gap: 60px;
-            flex-wrap: wrap;
             position: relative;
             z-index: 15;
+            width: 100%;
+            max-width: 600px;
+            place-items: center;
         }
 
         .sunflower-plant {
@@ -70,6 +77,8 @@
             transition: transform 0.3s ease;
             animation: grow 1s ease-out forwards;
             opacity: 0;
+            width: 100%;
+            max-width: 140px;
         }
 
         .sunflower-plant:nth-child(1) { animation-delay: 0.5s; }
@@ -93,9 +102,13 @@
             transform: scale(1.1);
         }
 
+        .sunflower-plant:active {
+            transform: scale(0.95);
+        }
+
         .sunflower {
-            width: 120px;
-            height: 120px;
+            width: clamp(80px, 15vw, 120px);
+            height: clamp(80px, 15vw, 120px);
             position: relative;
             margin-bottom: 10px;
         }
@@ -110,35 +123,35 @@
 
         .petal {
             position: absolute;
-            width: 20px;
-            height: 40px;
+            width: clamp(12px, 3vw, 20px);
+            height: clamp(20px, 5vw, 40px);
             background: linear-gradient(to top, #ffd700, #ffed4a);
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             top: 50%;
             left: 50%;
             transform-origin: center bottom;
-            margin-left: -10px; /* Centrar horizontalmente */
-            margin-top: -40px; /* Posicionar correctamente */
+            margin-left: calc(clamp(12px, 3vw, 20px) * -0.5);
+            margin-top: calc(clamp(20px, 5vw, 40px) * -1);
         }
 
-        /* Distribución circular de pétalos mejorada */
-        .petal:nth-child(1)  { transform: rotate(0deg) translateY(-25px); }
-        .petal:nth-child(2)  { transform: rotate(30deg) translateY(-25px); }
-        .petal:nth-child(3)  { transform: rotate(60deg) translateY(-25px); }
-        .petal:nth-child(4)  { transform: rotate(90deg) translateY(-25px); }
-        .petal:nth-child(5)  { transform: rotate(120deg) translateY(-25px); }
-        .petal:nth-child(6)  { transform: rotate(150deg) translateY(-25px); }
-        .petal:nth-child(7)  { transform: rotate(180deg) translateY(-25px); }
-        .petal:nth-child(8)  { transform: rotate(210deg) translateY(-25px); }
-        .petal:nth-child(9)  { transform: rotate(240deg) translateY(-25px); }
-        .petal:nth-child(10) { transform: rotate(270deg) translateY(-25px); }
-        .petal:nth-child(11) { transform: rotate(300deg) translateY(-25px); }
-        .petal:nth-child(12) { transform: rotate(330deg) translateY(-25px); }
+        /* Distribución circular de pétalos */
+        .petal:nth-child(1)  { transform: rotate(0deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(2)  { transform: rotate(30deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(3)  { transform: rotate(60deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(4)  { transform: rotate(90deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(5)  { transform: rotate(120deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(6)  { transform: rotate(150deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(7)  { transform: rotate(180deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(8)  { transform: rotate(210deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(9)  { transform: rotate(240deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(10) { transform: rotate(270deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(11) { transform: rotate(300deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
+        .petal:nth-child(12) { transform: rotate(330deg) translateY(calc(clamp(80px, 15vw, 120px) * -0.21)); }
 
         .sunflower-center {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: clamp(30px, 6vw, 50px);
+            height: clamp(30px, 6vw, 50px);
             background: radial-gradient(circle, #8b4513, #5d2e0a);
             border-radius: 50%;
             top: 50%;
@@ -168,8 +181,8 @@
         }
 
         .stem {
-            width: 8px;
-            height: 150px;
+            width: clamp(6px, 1.5vw, 8px);
+            height: clamp(80px, 20vw, 150px);
             background: linear-gradient(to bottom, #90EE90, #228B22);
             border-radius: 4px;
             position: relative;
@@ -179,8 +192,8 @@
         /* Hojas del tallo */
         .leaf {
             position: absolute;
-            width: 25px;
-            height: 15px;
+            width: clamp(15px, 4vw, 25px);
+            height: clamp(10px, 2.5vw, 15px);
             background: linear-gradient(45deg, #90EE90, #32CD32);
             border-radius: 0 100% 0 100%;
             transform-origin: left center;
@@ -188,18 +201,18 @@
 
         .leaf:nth-child(1) {
             top: 30%;
-            left: -20px;
+            left: calc(clamp(15px, 4vw, 25px) * -0.8);
             transform: rotate(-30deg);
         }
 
         .leaf:nth-child(2) {
             top: 60%;
-            right: -20px;
+            right: calc(clamp(15px, 4vw, 25px) * -0.8);
             transform: rotate(30deg) scaleX(-1);
         }
 
         .emoji {
-            font-size: 1.5em;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             display: inline-block;
             animation: bounce 1s ease-in-out infinite;
         }
@@ -212,7 +225,7 @@
 
         .click-heart {
             position: absolute;
-            font-size: 24px;
+            font-size: clamp(18px, 4vw, 24px);
             pointer-events: none;
             animation: heartFloat 2s ease-out forwards;
             z-index: 30;
@@ -233,42 +246,6 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2em;
-                margin-bottom: 30px;
-            }
-            
-            .garden {
-                gap: 30px;
-            }
-            
-            .sunflower {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .stem {
-                height: 100px;
-            }
-            
-            .petal {
-                width: 15px;
-                height: 25px;
-                margin-left: -7.5px;
-                margin-top: -12px;
-            }
-            
-            .petal:nth-child(n) {
-                transform: rotate(calc((var(--i) - 1) * 30deg)) translateY(-28px);
-            }
-            
-            .sunflower-center {
-                width: 35px;
-                height: 35px;
-            }
-        }
-
         .hidden {
             display: none;
         }
@@ -286,6 +263,130 @@
             to {
                 transform: scale(1);
                 opacity: 1;
+            }
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .title {
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+            
+            .garden {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                max-width: 300px;
+            }
+            
+            .heart {
+                font-size: clamp(14px, 4vw, 18px);
+            }
+            
+            .sunflower-plant {
+                max-width: 100px;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .garden {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 25px;
+                max-width: 450px;
+            }
+            
+            .sunflower-plant {
+                max-width: 120px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .garden {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 35px;
+                max-width: 550px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .garden {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 40px;
+                max-width: 700px;
+            }
+        }
+
+        /* Mejoras para dispositivos táctiles */
+        @media (hover: none) and (pointer: coarse) {
+            .sunflower-plant:hover {
+                transform: none;
+            }
+            
+            .sunflower-plant:active {
+                transform: scale(0.95);
+            }
+            
+            .click-heart {
+                font-size: clamp(20px, 5vw, 28px);
+            }
+        }
+
+        /* Orientación landscape en móviles */
+        @media (max-width: 768px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+            
+            .title {
+                font-size: clamp(1.2rem, 4vw, 2rem);
+                margin-bottom: 15px;
+            }
+            
+            .garden {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 15px;
+                max-width: 600px;
+            }
+            
+            .sunflower-plant {
+                max-width: 80px;
+            }
+        }
+
+        /* Accesibilidad mejorada */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .heart {
+                animation: none;
+            }
+            
+            .title {
+                animation: none;
+            }
+            
+            .emoji {
+                animation: none;
+            }
+        }
+
+        /* Alto contraste */
+        @media (prefers-contrast: high) {
+            .title {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+                color: #d81b60;
+            }
+            
+            .sunflower-center {
+                border-width: 4px;
             }
         }
     </style>
@@ -526,26 +627,28 @@
             }
         }
 
-        // Agregar interactividad con el mouse para los corazones de fondo
-        document.addEventListener('mousemove', (e) => {
-            const hearts = document.querySelectorAll('.heart');
-            hearts.forEach(heart => {
-                const rect = heart.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                const deltaX = e.clientX - centerX;
-                const deltaY = e.clientY - centerY;
-                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                
-                if (distance < 100) {
-                    const force = (100 - distance) / 100;
-                    heart.style.transform = `translate(${-deltaX * force * 0.2}px, ${-deltaY * force * 0.2}px) scale(${1 + force * 0.2})`;
-                } else {
-                    heart.style.transform = 'translate(0, 0) scale(1)';
-                }
+        // Agregar interactividad con el mouse para los corazones de fondo (solo en desktop)
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                const hearts = document.querySelectorAll('.heart');
+                hearts.forEach(heart => {
+                    const rect = heart.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    const deltaX = e.clientX - centerX;
+                    const deltaY = e.clientY - centerY;
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                    
+                    if (distance < 100) {
+                        const force = (100 - distance) / 100;
+                        heart.style.transform = `translate(${-deltaX * force * 0.2}px, ${-deltaY * force * 0.2}px) scale(${1 + force * 0.2})`;
+                    } else {
+                        heart.style.transform = 'translate(0, 0) scale(1)';
+                    }
+                });
             });
-        });
+        }
 
         function revealMoreSunflowers(plant, event) {
             event.stopPropagation();
@@ -569,6 +672,22 @@
             // Remover el onclick del primer girasol para que no vuelva a activar la revelación
             plant.setAttribute('onclick', 'animateSunflower(this, event)');
         }
+
+        // Optimización para dispositivos móviles
+        let isTouch = false;
+        document.addEventListener('touchstart', function() {
+            isTouch = true;
+        });
+
+        // Prevenir el zoom en doble tap en iOS full
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
